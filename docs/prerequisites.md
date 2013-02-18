@@ -4,10 +4,11 @@
 
 		$ easy_install django
 
-## Flask
+## [Flask](http://flask.pocoo.org/docs/quickstart/)
 
 		$ easy_install pip
 		$ pip install Flask
+
 
 ## Virtual Env
 
