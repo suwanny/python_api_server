@@ -31,11 +31,15 @@ def hello():
 @app.route("/get", methods=["GET"])
 def get():
   args = request.args.get("params").split(",")
-  def u2ascii(s): return s.encode("ascii", "ignore")
-  args = map(u2ascii, args)
+  # def u2ascii(s): return s.encode("ascii", "ignore")
+  # http://docs.python.org/2/tutorial/datastructures.html#functional-programming-tools
+  # http://www.secnetix.de/olli/Python/lambda_functions.hawk
+  args = map(lambda s: s.encode("ascii", "ignore"), args)
   print args
-  def print_args(x,y,z): return "%s, %s, %s" % (x,y,z)
-  return print_args(*args)
+
+  # def print_args(x,y,z): return "%s, %s, %s" % (x,y,z)
+  pargs = lambda x,y,z: "%s, %s, %s" % (x,y,z)
+  return pargs(*args)
 
 if __name__ == '__main__':
   app.run(host="0.0.0.0", debug=True)
