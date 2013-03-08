@@ -17,6 +17,7 @@ from controller.main_controller import MainController
 app         = Flask(__name__)
 controller  = MainController()
 
+
 @app.route('/')
 def index():
   print "path: %s" % lib_dir
@@ -27,6 +28,15 @@ def hello():
   data = controller.hello(request)
   return jsonify(data)
 
+@app.route("/get", methods=["GET"])
+def get():
+  args = request.args.get("params").split(",")
+  def u2ascii(s): return s.encode("ascii", "ignore")
+  args = map(u2ascii, args)
+  print args
+  def print_args(x,y,z): return "%s, %s, %s" % (x,y,z)
+  return print_args(*args)
+
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(host="0.0.0.0", debug=True)
 
